@@ -1,0 +1,35 @@
+.reading-log {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.85rem;
+}
+
+.reading-log__label {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.reading-log__input {
+  width: 4rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: 0.4rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.reading-log__btn {
+  background: var(--color-accent);
+  border: none;
+  color: #fff;
+  border-radius: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+}
+
+.reading-log__total {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}

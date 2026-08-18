@@ -1,0 +1,117 @@
+.class-detail {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--text);
+  padding: 1.75rem 1rem 3rem;
+}
+
+.class-detail__inner {
+  width: min(100% - 2rem, 40rem);
+  margin-inline: auto;
+}
+
+.class-detail__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.class-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.class-detail__back:hover {
+  color: var(--text);
+}
+
+.class-detail__header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.class-detail__header p {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.class-detail__section {
+  margin-top: 1.75rem;
+}
+
+.class-detail__section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.class-detail__section-head h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.class-detail__action {
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  text-decoration: none;
+}
+
+.class-detail__action:hover {
+  color: var(--text);
+}
+
+.class-detail__assignments {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.class-detail__empty {
+  background: var(--sunk);
+  border-radius: 12px;
+  padding: 1.1rem 1rem;
+}
+
+.class-detail__empty p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+.class-detail__empty p:first-child {
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.class-detail__status,
+.class-detail__error {
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.class-detail__error {
+  color: var(--danger-text);
+  margin-bottom: 0.75rem;
+}
+
+.class-detail a:not(.class-detail__back) {
+  color: var(--link);
+}

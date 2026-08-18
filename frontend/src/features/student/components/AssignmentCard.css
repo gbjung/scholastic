@@ -1,0 +1,236 @@
+.assignment-card {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  color: inherit;
+  text-align: left;
+  font: inherit;
+}
+
+.assignment-card--featured {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.assignment-card--upcoming,
+.assignment-card--completed {
+  display: grid;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.95rem 1rem;
+  margin-bottom: 0.7rem;
+  cursor: pointer;
+}
+
+.assignment-card--upcoming {
+  grid-template-columns: auto 1fr auto auto;
+}
+
+.assignment-card--completed {
+  grid-template-columns: auto 1fr auto;
+  background: var(--color-surface-muted);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.assignment-card--upcoming:hover,
+.assignment-card--completed:hover {
+  border-color: #d9d3c8;
+}
+
+.book-cover {
+  --book-face: #d7e4f5;
+  --book-spine: #7f9fc4;
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  border-radius: 0.35rem 0.55rem 0.55rem 0.35rem;
+  overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(45, 44, 41, 0.08),
+    inset -1px 0 0 rgba(255, 255, 255, 0.35);
+}
+
+.book-cover__spine {
+  width: 0.55rem;
+  background: var(--book-spine);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.12);
+}
+
+.book-cover__face {
+  flex: 1;
+  background: var(--book-face);
+  min-width: 0;
+}
+
+.book-cover--sm {
+  width: 2.55rem;
+  height: 3.4rem;
+}
+
+.book-cover--sm .book-cover__spine {
+  width: 0.38rem;
+}
+
+.book-cover--lg {
+  width: 8rem;
+  min-height: 10.5rem;
+}
+
+.book-cover--lg .book-cover__spine {
+  width: 0.7rem;
+}
+
+.book-cover--lg .book-cover__face {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.85rem 0.7rem 0.9rem 0.65rem;
+}
+
+.book-cover__title {
+  color: var(--color-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-cover__author {
+  margin-top: 0.75rem;
+  color: rgba(45, 44, 41, 0.72);
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-cover--overdue {
+  --book-face: #f3ddd3;
+  --book-spine: #b4634a;
+}
+
+.book-cover--progress {
+  --book-face: #d7e4f5;
+  --book-spine: #5f87b8;
+}
+
+.assignment-card__check {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-pill);
+  display: grid;
+  place-items: center;
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.assignment-card__featured-body,
+.assignment-card__main {
+  min-width: 0;
+}
+
+.assignment-card--completed .assignment-card__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.assignment-card--completed .assignment-card__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.assignment-card__class,
+.assignment-card__meta,
+.assignment-card__date,
+.assignment-card__stats {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.assignment-card__title {
+  margin: 0.2rem 0;
+  color: var(--color-text);
+  font-size: 1.15rem;
+  font-weight: 650;
+}
+
+.assignment-card--featured .assignment-card__title {
+  font-size: 1.55rem;
+  margin: 0.15rem 0 0.25rem;
+}
+
+.assignment-card__featured-meta,
+.assignment-card__featured-actions,
+.assignment-card__side {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.assignment-card__featured-meta {
+  margin: 0.85rem 0 1rem;
+}
+
+.assignment-card__side {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
+.assignment-card__due {
+  color: var(--color-due);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.assignment-card__due--overdue {
+  color: var(--color-danger);
+}
+
+.assignment-card__cta {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 0.65rem;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.assignment-card__cta:hover {
+  background: var(--color-accent-hover);
+}
+
+.assignment-card__chevron {
+  color: var(--color-text-muted);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .assignment-card--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .book-cover--lg {
+    width: 100%;
+    min-height: 9rem;
+  }
+}

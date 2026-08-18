@@ -1,0 +1,129 @@
+.classes-page {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--text);
+  padding: 2rem 1rem 3rem;
+}
+
+.classes-page__inner {
+  width: min(100% - 2rem, 40rem);
+  margin-inline: auto;
+}
+
+.classes-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.classes-page__heading h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.classes-page__heading p {
+  margin: 0.4rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.classes-page__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.classes-page__new {
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+}
+
+.classes-page__new:hover {
+  color: var(--text);
+}
+
+.classes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.classes-page__error {
+  margin: 0;
+  color: var(--danger-text);
+  font-size: 0.9375rem;
+}
+
+.classes-empty {
+  background: var(--sunk);
+  border-radius: 12px;
+  padding: 1.25rem 1.15rem;
+}
+
+.classes-empty p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.classes-empty p:first-child {
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.classes-page__skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.classes-skel {
+  border-radius: 12px;
+  background: var(--sunk);
+}
+
+.classes-skel--title {
+  width: 10rem;
+  height: 1.6rem;
+  border-radius: 8px;
+}
+
+.classes-skel--sub {
+  width: 16rem;
+  height: 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.classes-skel--card {
+  height: 6.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .classes-skel {
+    animation: classes-pulse 1.2s ease-in-out infinite;
+  }
+}
+
+@keyframes classes-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}

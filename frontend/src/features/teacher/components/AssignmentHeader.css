@@ -1,0 +1,81 @@
+.assignment-header {
+  margin-bottom: 1.5rem;
+}
+
+.assignment-header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.assignment-header__breadcrumb {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.assignment-header__breadcrumb span {
+  margin: 0 0.35rem;
+}
+
+.assignment-header__edit {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+}
+
+.assignment-header__main {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.assignment-header__icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: var(--color-progress-bg);
+  display: grid;
+  place-items: center;
+}
+
+.assignment-header__book {
+  display: flex;
+  width: 1.2rem;
+  height: 1.55rem;
+  border-radius: 0.12rem 0.2rem 0.2rem 0.12rem;
+  overflow: hidden;
+  box-shadow: 0 1px 1px rgba(45, 44, 41, 0.12);
+}
+
+.assignment-header__book-spine {
+  width: 0.24rem;
+  background: #5f87b8;
+}
+
+.assignment-header__book-face {
+  flex: 1;
+  background: #d7e4f5;
+}
+
+.assignment-header__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.assignment-header__subtitle {
+  margin: 0.35rem 0 0;
+  color: var(--color-text-muted);
+}
+
+.assignment-header__due {
+  margin: 0.5rem 0 0;
+  color: var(--color-due);
+  font-size: 0.95rem;
+}

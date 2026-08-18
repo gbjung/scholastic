@@ -1,0 +1,61 @@
+:root {
+  --paper: #faf7f0;
+  --card: #ffffff;
+  --sunk: #f1efe8;
+  --border: #d3d1c7;
+  --text: #2c2c2a;
+  --text-muted: #5f5e5a;
+  --brand: #993c1d;
+  --brand-dark: #712b13;
+  --link: #185fa5;
+  --accent-bg: #e6f1fb;
+  --accent-text: #0c447c;
+  --success-bg: #eaf3de;
+  --success-text: #27500a;
+  --danger-bg: #fcebeb;
+  --danger-text: #791f1f;
+  --danger-border: #791f1f;
+  --warning-text: #854f0b;
+  --skeleton: #ede9e0;
+  --text-faint: #b4b2a9;
+
+  /* Older CSS names, pointed at the current theme. */
+  --color-bg: var(--paper);
+  --color-surface: var(--card);
+  --color-surface-muted: var(--sunk);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--brand);
+  --color-accent-hover: var(--brand-dark);
+  --color-due: var(--warning-text);
+  --color-danger: var(--danger-text);
+  --color-success: var(--success-text);
+  --color-success-bg: var(--success-bg);
+  --color-progress: var(--accent-text);
+  --color-progress-bg: var(--accent-bg);
+  --color-neutral: var(--text);
+  --color-neutral-bg: var(--sunk);
+
+  --radius-card: 12px;
+  --radius-control: 8px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(44, 44, 42, 0.04);
+  --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --page-max: 40rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
