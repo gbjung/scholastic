@@ -1,6 +1,6 @@
 # Reading Assignment Portal
 
-A portal where teachers can assign book to read for their classes and track how students are progressing, and where students can see their assignments, log their reading and update their progression.
+A portal where teachers can assign books to read for their classes and track how students are progressing, and where students can see their assignments, log their reading and update their progression.
 
 Flask + PostgreSQL on the backend, React on the frontend, JWT auth.
 
@@ -117,13 +117,13 @@ Both:
 
 I started with the data before thinking about the UI.
 
-Intrepreted handling minutes read as an interactive log where both the students and teachers can utilize it. So `ReadingLog` is its own table, one row per session, holding minutes, where the student stopped, and any notes they wanted to leave. The total is just a sum of the rows. That way a teacher sees the actual pattern of when someone read and what they thought about it, rather than a running counter that could mean anything.
+Interpreted handling minutes read as an interactive log where both the students and teachers can utilize it. So `ReadingLog` is its own table, one row per session, holding minutes, where the student stopped, and any notes they wanted to leave. The total is just a sum of the rows. That way a teacher sees the actual pattern of when someone read and what they thought about it, rather than a running counter that could mean anything.
 
 The brief says teachers assign to "a student(s)", which I read as leaving the grouping open. I went with classes, since that's how it works in a school in the real world. Teachers have multiple classes and they need somewhere to manage those groups whether or not any assignments exist. Assigning to a class creates an `AssignmentStatus` for everyone enrolled, and adding a student later backfills theirs. `StudentEnrollment` table exists as a representation of students in their classes.
 
 `AssignmentStatus` holds one student's progress for one assignment, and it owns that student's reading logs. `Assignment` points at a `Book` by foreign key.
 
-For users I kept a base `User` table with email, password hash, and role, then separate `Student` and `Teacher` profile tables. Auth logic doesn't have to branch on role that way, and if either profile grows fields later it won't turn into one wide table trying to accomodate two separate very unique user types.
+For users I kept a base `User` table with email, password hash, and role, then separate `Student` and `Teacher` profile tables. Auth logic doesn't have to branch on role that way, and if either profile grows fields later it won't turn into one wide table trying to accommodate two separate very unique user types.
 
 Everything uses UUID primary keys and timezone-aware timestamps.
 
