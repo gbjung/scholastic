@@ -23,6 +23,13 @@ TEACHER_EMAIL = "teacher@scholastic.test"
 TEACHER_PASSWORD = "password123"
 STUDENT_DEMO_EMAIL = "priya.shah@scholastic.test"
 
+CLASSES = [
+    ("English 9", "English"),
+    ("American Literature", "English"),
+    ("US History", "History"),
+    ("Book Club", "English"),
+]
+
 GUTENBERG_BOOKS = [
     {
         "title": "The Call of the Wild",
@@ -32,8 +39,8 @@ GUTENBERG_BOOKS = [
             "A sled dog's journey in the Yukon during the Klondike Gold Rush."
         ),
         "assignment_name": "chapters 1–4",
-        "class_name": "Period 5",
-        "subject": "History",
+        "class_name": "American Literature",
+        "subject": "English",
         "due_offset_days": 3,
     },
     {
@@ -44,7 +51,7 @@ GUTENBERG_BOOKS = [
             "A scientist creates life — and faces the consequences."
         ),
         "assignment_name": "letters + chapters 1–5",
-        "class_name": "Period 3",
+        "class_name": "English 9",
         "subject": "English",
         "due_offset_days": -2,
     },
@@ -57,7 +64,7 @@ GUTENBERG_BOOKS = [
             "misunderstanding."
         ),
         "assignment_name": "chapters 1–12",
-        "class_name": "Period 3",
+        "class_name": "English 9",
         "subject": "English",
         "due_offset_days": 5,
     },
@@ -69,7 +76,7 @@ GUTENBERG_BOOKS = [
             "A mischievous boy grows up along the Mississippi River."
         ),
         "assignment_name": "chapters 1–8",
-        "class_name": "Period 2",
+        "class_name": "American Literature",
         "subject": "English",
         "due_offset_days": 12,
     },
@@ -81,8 +88,8 @@ GUTENBERG_BOOKS = [
             "Alice falls down a rabbit hole into a world of curious creatures."
         ),
         "assignment_name": "full book",
-        "class_name": "Period 2",
-        "subject": "Science",
+        "class_name": "Book Club",
+        "subject": "English",
         "due_offset_days": 25,
     },
     {
@@ -93,12 +100,264 @@ GUTENBERG_BOOKS = [
             "Douglass recounts his life under slavery and his path to freedom."
         ),
         "assignment_name": "chapters 1–6",
-        "class_name": "Period 5",
+        "class_name": "US History",
         "subject": "History",
         "due_offset_days": -10,
-        "completed_for_demo": True,
     },
 ]
+
+
+def L(minutes, days=0, hours=0, at=None, notes=None):
+    """One reading session. `days`/`hours` is how long ago it was logged."""
+    ago = {}
+    if days:
+        ago["days"] = days
+    if hours:
+        ago["hours"] = hours
+    if not ago:
+        ago["hours"] = 2
+    return {
+        "minutes": minutes,
+        "stopped_at": at,
+        "notes": notes,
+        "ago": ago,
+    }
+
+
+# Per-book progress by first name. Missing students stay not started.
+# Overdue + not completed = behind on the class card.
+PROGRESS = {
+    "The Call of the Wild": {
+        "Amara": (
+            STATUS_IN_PROGRESS,
+            [
+                L(35, days=5, at="chapter 1"),
+                L(
+                    42,
+                    days=3,
+                    at="chapter 2",
+                    notes="The dog pack has a brutal pecking order.",
+                ),
+                L(28, days=1, at="chapter 3"),
+            ],
+        ),
+        "Diego": (
+            STATUS_COMPLETED,
+            [
+                L(40, days=8, at="chapter 1"),
+                L(38, days=6, at="chapter 2"),
+                L(45, days=4, at="chapter 4"),
+            ],
+        ),
+        "Priya": (
+            STATUS_IN_PROGRESS,
+            [
+                L(40, days=4, at="chapter 1"),
+                L(
+                    27,
+                    days=2,
+                    at="chapter 2",
+                    notes=(
+                        "Buck finally gets away from Spitz. I didn't "
+                        "expect the sled dogs to have their own "
+                        "hierarchy like that — it's kind of brutal."
+                    ),
+                ),
+                L(22, hours=6, at="chapter 3"),
+            ],
+        ),
+        "Mei": (
+            STATUS_IN_PROGRESS,
+            [
+                L(50, days=6, at="chapter 1"),
+                L(33, days=4, at="chapter 2"),
+                L(41, days=2, at="chapter 3"),
+                L(
+                    25,
+                    hours=8,
+                    at="chapter 4",
+                    notes="Almost done — the North feels endless.",
+                ),
+            ],
+        ),
+    },
+    "Frankenstein": {
+        "Amara": (
+            STATUS_COMPLETED,
+            [
+                L(30, days=12, at="letter 2"),
+                L(44, days=9, at="chapter 2"),
+                L(38, days=6, at="chapter 4"),
+                L(36, days=4, at="chapter 5"),
+            ],
+        ),
+        "Diego": (
+            STATUS_IN_PROGRESS,
+            [
+                L(20, days=7, at="letter 4"),
+                L(
+                    18,
+                    days=3,
+                    at="chapter 1",
+                    notes="Hard to get going. The letters are slow.",
+                ),
+            ],
+        ),
+        "Jonah": (
+            STATUS_IN_PROGRESS,
+            [
+                L(15, days=8, at="letter 1"),
+                L(25, days=5, at="letter 4"),
+                L(12, days=1, at="chapter 1"),
+            ],
+        ),
+        "Mei": (
+            STATUS_COMPLETED,
+            [
+                L(48, days=11, at="chapter 2"),
+                L(40, days=8, at="chapter 4"),
+                L(32, days=5, at="chapter 5"),
+            ],
+        ),
+    },
+    "Pride and Prejudice": {
+        "Amara": (
+            STATUS_IN_PROGRESS,
+            [
+                L(32, days=4, at="chapter 3"),
+                L(29, days=2, at="chapter 6"),
+                L(
+                    24,
+                    hours=10,
+                    at="chapter 8",
+                    notes=(
+                        "Darcy is impossible. Elizabeth is funnier "
+                        "than I expected."
+                    ),
+                ),
+            ],
+        ),
+        "Diego": (
+            STATUS_IN_PROGRESS,
+            [L(18, days=1, at="chapter 2")],
+        ),
+        "Priya": (
+            STATUS_IN_PROGRESS,
+            [
+                L(22, days=3, at="chapter 3"),
+                L(18, hours=5, at="chapter 4"),
+            ],
+        ),
+        "Mei": (
+            STATUS_IN_PROGRESS,
+            [
+                L(40, days=3, at="chapter 5"),
+                L(35, days=1, at="chapter 9"),
+            ],
+        ),
+    },
+    "The Adventures of Tom Sawyer": {
+        "Amara": (
+            STATUS_IN_PROGRESS,
+            [
+                L(28, days=3, at="chapter 2"),
+                L(
+                    20,
+                    days=1,
+                    at="chapter 4",
+                    notes="The fence scene is even funnier than I remembered.",
+                ),
+            ],
+        ),
+        "Jonah": (
+            STATUS_IN_PROGRESS,
+            [L(16, days=2, at="chapter 1")],
+        ),
+    },
+    "Alice's Adventures in Wonderland": {
+        "Amara": (
+            STATUS_COMPLETED,
+            [
+                L(30, days=14, at="chapter 3"),
+                L(35, days=11, at="chapter 7"),
+                L(28, days=8, at="chapter 12"),
+            ],
+        ),
+        "Diego": (
+            STATUS_IN_PROGRESS,
+            [
+                L(22, days=6, at="chapter 2"),
+                L(26, days=3, at="chapter 4"),
+                L(19, days=1, at="chapter 6"),
+            ],
+        ),
+        "Priya": (
+            STATUS_IN_PROGRESS,
+            [
+                L(25, days=5, at="chapter 3"),
+                L(
+                    20,
+                    days=2,
+                    at="chapter 5",
+                    notes=(
+                        "The caterpillar chapter made no sense and I loved it."
+                    ),
+                ),
+            ],
+        ),
+        "Mei": (
+            STATUS_IN_PROGRESS,
+            [
+                L(45, days=4, at="chapter 6"),
+                L(30, hours=12, at="chapter 8"),
+            ],
+        ),
+    },
+    "Narrative of the Life of Frederick Douglass": {
+        "Amara": (
+            STATUS_COMPLETED,
+            [
+                L(40, days=18, at="chapter 2"),
+                L(38, days=15, at="chapter 4"),
+                L(42, days=13, at="chapter 6"),
+            ],
+        ),
+        "Diego": (
+            STATUS_COMPLETED,
+            [
+                L(35, days=16, at="chapter 3"),
+                L(40, days=12, at="chapter 6"),
+            ],
+        ),
+        "Priya": (
+            STATUS_COMPLETED,
+            [
+                L(30, days=20, at="chapter 2"),
+                L(36, days=16, at="chapter 4"),
+                L(55, days=13, at="chapter 6"),
+            ],
+        ),
+        "Jonah": (
+            STATUS_IN_PROGRESS,
+            [
+                L(20, days=14, at="chapter 1"),
+                L(
+                    15,
+                    days=9,
+                    at="chapter 2",
+                    notes="I keep stalling. The beginning is dense.",
+                ),
+            ],
+        ),
+        "Mei": (
+            STATUS_COMPLETED,
+            [
+                L(50, days=17, at="chapter 3"),
+                L(44, days=14, at="chapter 6"),
+            ],
+        ),
+    },
+}
 
 
 def get_or_create_user(email, password, role, first_name, last_name):
@@ -204,22 +463,23 @@ def set_status(assignment, student, status, logs=None):
         record.status = status
         ReadingLog.query.filter_by(assignment_status_id=record.id).delete()
 
-    record.completed_at = (
-        datetime.now(timezone.utc) - timedelta(days=3)
-        if status == STATUS_COMPLETED
-        else None
-    )
-
+    now = datetime.now(timezone.utc)
+    latest = None
     for log in logs or []:
+        logged_at = now - timedelta(**log["ago"])
+        if latest is None or logged_at > latest:
+            latest = logged_at
         db.session.add(
             ReadingLog(
                 assignment_status_id=record.id,
                 minutes=log["minutes"],
                 stopped_at=log.get("stopped_at"),
                 notes=log.get("notes"),
-                logged_at=datetime.now(timezone.utc) - timedelta(**log["ago"]),
+                logged_at=logged_at,
             )
         )
+
+    record.completed_at = latest if status == STATUS_COMPLETED else None
     return record
 
 
@@ -246,26 +506,25 @@ def seed():
             ("liam.nguyen@scholastic.test", "Liam", "Nguyen"),
         ]
         students = []
+        by_first = {}
         for email, first_name, last_name in students_spec:
             _, student = get_or_create_user(
                 email, "password123", "student", first_name, last_name
             )
             students.append(student)
+            by_first[first_name] = student
 
         classes = {}
-        for spec in GUTENBERG_BOOKS:
-            key = (spec["class_name"], spec["subject"])
-            if key not in classes:
-                classes[key] = get_or_create_class(
-                    teacher, spec["class_name"], spec["subject"]
-                )
+        for name, subject in CLASSES:
+            classes[(name, subject)] = get_or_create_class(
+                teacher, name, subject
+            )
 
         for class_ in classes.values():
             for student in students:
                 ensure_enrollment(student, class_)
 
         now = datetime.now(timezone.utc)
-        priya = students[2]
         demo_assignment_id = None
 
         for spec in GUTENBERG_BOOKS:
@@ -283,7 +542,6 @@ def seed():
                 now + timedelta(days=spec["due_offset_days"]),
             )
 
-            # Start everyone as not started; later steps add demo progress.
             for student in students:
                 existing = AssignmentStatus.query.filter_by(
                     assignment_id=assignment.id, student_id=student.id
@@ -297,58 +555,13 @@ def seed():
                         )
                     )
 
+            for first_name, (status, logs) in PROGRESS.get(
+                spec["title"], {}
+            ).items():
+                set_status(assignment, by_first[first_name], status, logs)
+
             if spec["title"] == "The Call of the Wild":
                 demo_assignment_id = assignment.id
-                set_status(
-                    assignment,
-                    priya,
-                    STATUS_IN_PROGRESS,
-                    logs=[
-                        {
-                            "minutes": 40,
-                            "stopped_at": "chapter 1",
-                            "ago": {"days": 4},
-                        },
-                        {
-                            "minutes": 27,
-                            "stopped_at": "chapter 2",
-                            "notes": (
-                                "Buck finally gets away from Spitz. I didn't "
-                                "expect the sled dogs to have their own "
-                                "hierarchy like that — it's kind of brutal."
-                            ),
-                            "ago": {"days": 2},
-                        },
-                    ],
-                )
-            elif spec.get("completed_for_demo"):
-                set_status(
-                    assignment,
-                    priya,
-                    STATUS_COMPLETED,
-                    logs=[
-                        {
-                            "minutes": 55,
-                            "stopped_at": "chapter 6",
-                            "ago": {"days": 3},
-                        }
-                    ],
-                )
-            elif spec["due_offset_days"] < 0:
-                set_status(assignment, priya, STATUS_NOT_STARTED)
-            elif spec["title"] == "Pride and Prejudice":
-                set_status(
-                    assignment,
-                    priya,
-                    STATUS_IN_PROGRESS,
-                    logs=[
-                        {
-                            "minutes": 18,
-                            "stopped_at": "chapter 4",
-                            "ago": {"hours": 5},
-                        }
-                    ],
-                )
 
         db.session.commit()
 
